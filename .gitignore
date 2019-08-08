@@ -5,6 +5,7 @@
 # IntelliJ project files
 .idea
 /node_modules/
+yarn-error.log
 
 out
 gen
