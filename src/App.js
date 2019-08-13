@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default class App extends Component {
   render() {
+    console.log('OK');
     return (
       <View style={styles.container}>
         <Text style={styles.text}>

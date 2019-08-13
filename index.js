@@ -1,5 +1,5 @@
-import React from "react";
-import {AppRegistry} from "react-native";
-import HelloWorld from "./src/HelloWorld";
+import React from 'react';
+import { AppRegistry } from 'react-native';
+import App from './src/App';
 
-AppRegistry.registerComponent("StarRCT", () => HelloWorld);
+AppRegistry.registerComponent('StarRCT', () => App);
