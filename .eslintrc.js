@@ -222,13 +222,13 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
-      "react-native": { "platform": "both" },
       "node": {
         "extensions": [
           ".js",
           ".jsx",
           ".ios.js",
-          ".android.js"
+          ".android.js",
+          ".ts", ".tsx", ".native.js"
         ]
       },
     },
