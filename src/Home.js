@@ -1,15 +1,55 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Dimensions, YellowBox } from 'react-native';
+import IndicatorList from './IndicatorList';
 
+YellowBox.ignoreWarnings(['Remote debugger']);
+const { width } = Dimensions.get('window');
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      data: [],
+    };
+  }
+
+  componentDidMount() {
+    const { data } = this.state;
+    for (let i = 0; i < 10; i += 1) {
+      data.push(`Data ${i}`);
+    }
+    this.setState({
+      loading: false,
+      data,
+    });
+  }
+
   render() {
-    console.log('OK');
+    const { loading, data } = this.state;
+    if (loading) {
+      return (
+        <View style={styles.container} >
+          <Text style={styles.loadText}>Loading</Text>
+        </View>
+      );
+    }
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>
-                   WebView {URL}
-        </Text>
+      <View style={styles.container} >
+        <FlatList
+          data={data}
+          keyExtractor={item => (item)}
+          initialNumToRender={9}
+          // 为了避免动态测量，加入了以下属性。
+          getItemLayout={(d, index) => ({ length: 100, offset: 100 * index, index })}
+          renderItem={({ item }) => (
+            <Text style={styles.item} >
+              {item}
+            </Text>)
+          }
+        />
       </View>
     );
   }
@@ -21,8 +61,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  loadText: {
+    fontSize: 18,
     color: 'red',
-    fontSize: 24,
   },
+  item: {
+    backgroundColor: '#efefef',
+    width,
+    height: 100,
+    fontSize: 18,
+    color: 'red',
+    textAlign: 'center',
+    borderTopColor: '#666666',
+    borderTopWidth: 1,
+    textAlignVertical: 'center',
+  }
 });

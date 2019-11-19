@@ -15,7 +15,6 @@ const AppContainer = createAppContainer(RootStack);
 
 export default class MainLayout extends React.Component {
   render() {
-    console.log('Main', this.props);
     return <Home />;
   }
 }
